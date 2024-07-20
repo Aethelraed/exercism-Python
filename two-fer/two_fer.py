@@ -4,5 +4,7 @@ In some English accents, when you say "two for" quickly, it sounds like "two fer
 Imagine a bakery that has a holiday offer where you can buy two cookies for the price of one ("two-fer one!"). You take the offer and (very generously) decide to give the extra cookie to someone else in the queue.
 
 """
-def two_fer(name='you'):
-    return f'One for {name}, one for me.'
+
+
+def two_fer(name="you"):
+    return f"One for {name}, one for me."

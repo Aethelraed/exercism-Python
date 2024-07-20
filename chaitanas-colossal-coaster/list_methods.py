@@ -11,8 +11,9 @@ def add_me_to_the_queue(express_queue, normal_queue, ticket_type, person_name):
     :return: list - the (updated) queue the name was added to.
     """
 
-    if ticket_type: return express_queue+[person_name]
-    return normal_queue+[person_name]
+    if ticket_type:
+        return express_queue + [person_name]
+    return normal_queue + [person_name]
 
 
 def find_my_friend(queue, friend_name):
@@ -35,7 +36,7 @@ def add_me_with_my_friends(queue, index, person_name):
     :return: list - queue updated with new name.
     """
 
-    return queue[:index]+[person_name]+queue[index:]
+    return queue[:index] + [person_name] + queue[index:]
 
 
 def remove_the_mean_person(queue, person_name):
@@ -68,9 +69,10 @@ def remove_the_last_person(queue):
     :return: str - name that has been removed from the end of the queue.
     """
 
-    omega = queue[-1] 
+    omega = queue[-1]
     queue = queue[:-1]
     return omega
+
 
 def sorted_names(queue):
     """Sort the names in the queue in alphabetical order and return the result.

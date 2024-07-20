@@ -1,12 +1,13 @@
 """Functions for compiling dishes and ingredients for a catering company."""
 
-
-from sets_categories_data import (VEGAN,
-                                  VEGETARIAN,
-                                  KETO,
-                                  PALEO,
-                                  ALCOHOLS,
-                                  SPECIAL_INGREDIENTS)
+from sets_categories_data import (
+    VEGAN,
+    VEGETARIAN,
+    KETO,
+    PALEO,
+    ALCOHOLS,
+    SPECIAL_INGREDIENTS,
+)
 
 
 def clean_ingredients(dish_name, dish_ingredients):
@@ -20,7 +21,7 @@ def clean_ingredients(dish_name, dish_ingredients):
     followed by the de-duped `set` of ingredients as the second item.
     """
 
-    return (dish_name,{*dish_ingredients})
+    return (dish_name, {*dish_ingredients})
 
 
 def check_drinks(drink_name, drink_ingredients):
@@ -35,7 +36,10 @@ def check_drinks(drink_name, drink_ingredients):
 
     """
 
-    return drink_name+" "+["Cocktail","Mocktail"][not {*drink_ingredients}&ALCOHOLS]
+    return (
+        drink_name + " " + ["Cocktail", "Mocktail"][not {*drink_ingredients} & ALCOHOLS]
+    )
+
 
 def categorize_dish(dish_name, dish_ing):
     """Categorize `dish_name` based on `dish_ingredients`.
@@ -49,12 +53,16 @@ def categorize_dish(dish_name, dish_ing):
     All dishes will "fit" into one of the categories imported from `sets_categories_data.py`
 
     """
-    dne = dish_name +": "
-    if {*dish_ing} & VEGAN == {*dish_ing}: return dne+"VEGAN"
-    if {*dish_ing} & (VEGAN|VEGETARIAN) == {*dish_ing}: return dne+"VEGETARIAN"
-    if {*dish_ing} & (PALEO) == {*dish_ing}: return dne+"PALEO"
-    if {*dish_ing} & (KETO) == {*dish_ing}: return dne+"KETO"
-    return dne+"OMNIVORE"
+    dne = dish_name + ": "
+    if {*dish_ing} & VEGAN == {*dish_ing}:
+        return dne + "VEGAN"
+    if {*dish_ing} & (VEGAN | VEGETARIAN) == {*dish_ing}:
+        return dne + "VEGETARIAN"
+    if {*dish_ing} & (PALEO) == {*dish_ing}:
+        return dne + "PALEO"
+    if {*dish_ing} & (KETO) == {*dish_ing}:
+        return dne + "KETO"
+    return dne + "OMNIVORE"
 
 
 def tag_special_ingredients(dish):
@@ -67,8 +75,8 @@ def tag_special_ingredients(dish):
     For the purposes of this exercise, all allergens or special ingredients that need to be tracked are in the
     SPECIAL_INGREDIENTS constant imported from `sets_categories_data.py`.
     """
-    name,[*ing]=dish
-    return (name,{*ing}&{*SPECIAL_INGREDIENTS})
+    name, [*ing] = dish
+    return (name, {*ing} & {*SPECIAL_INGREDIENTS})
 
 
 def compile_ingredients(dishes):
@@ -79,9 +87,9 @@ def compile_ingredients(dishes):
 
     This function should return a `set` of all ingredients from all listed dishes.
     """
-    out=set()
+    out = set()
     for dish in dishes:
-        out=out|{*dish}
+        out = out | {*dish}
     return out
 
 
@@ -96,18 +104,19 @@ def separate_appetizers(dishes, appetizers):
     Either list could contain duplicates and may require de-duping.
     """
 
-    return [*{*dishes}-{*appetizers}]
+    return [*{*dishes} - {*appetizers}]
 
 
-def singleton_ingredients(dishes,better_lint_than_err):
+def singleton_ingredients(dishes, better_lint_than_err):
     """Determine which `dishes` have a singleton ingredient (an ingredient that only appears once across dishes).
-    
+
     :param dishes: list - of ingredient sets.
     :return: set - containing singleton ingredients.
-    
+
     Each dish is represented by a `set` of its ingredients.
     The function should return a `set` of ingredients that only appear in a single dish.
     """
-    aa,cc = set(),set()
-    for dish in dishes: aa,cc= aa^dish,cc|(aa&dish)
-    return aa-cc
+    aa, cc = set(), set()
+    for dish in dishes:
+        aa, cc = aa ^ dish, cc | (aa & dish)
+    return aa - cc

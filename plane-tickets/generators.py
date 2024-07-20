@@ -14,7 +14,7 @@ def generate_seat_letters(number):
 
     """
 
-    return (["A","B","C","D"][(num % 4)] for num in range(number))
+    return (["A", "B", "C", "D"][(num % 4)] for num in range(number))
 
 
 def generate_seats(number):
@@ -33,8 +33,14 @@ def generate_seats(number):
     Example: 3C, 3D, 4A, 4B
 
     """
-    return ( str((num+4)//4)+["A","B","C","D"][(num % 4)] if num // 4 < 12 else str((num+8)//4)+["A","B","C","D"][(num % 4)]for num in range(number) )
-    
+    return (
+        (
+            str((num + 4) // 4) + ["A", "B", "C", "D"][(num % 4)]
+            if num // 4 < 12
+            else str((num + 8) // 4) + ["A", "B", "C", "D"][(num % 4)]
+        )
+        for num in range(number)
+    )
 
 
 def assign_seats(passengers):
@@ -49,6 +55,7 @@ def assign_seats(passengers):
     seats = list(generate_seats(len(passengers)))
     return {passengers[index]: seats[index] for index in range(len(passengers))}
 
+
 def generate_codes(seat_numbers, flight_id):
     """Generate codes for a ticket.
 
@@ -58,4 +65,6 @@ def generate_codes(seat_numbers, flight_id):
 
     """
 
-    return (str(seat_num+flight_id+"000000000000")[:12] for seat_num in seat_numbers)
+    return (
+        str(seat_num + flight_id + "000000000000")[:12] for seat_num in seat_numbers
+    )

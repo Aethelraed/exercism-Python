@@ -18,7 +18,7 @@ def convert_coordinate(coord):
     :return: tuple - the string coordinate split into its individual components.
     """
 
-    return (str(coord)[0],str(coord[-1]))
+    return (str(coord)[0], str(coord[-1]))
 
 
 def compare_records(azara_record, rui_record):
@@ -29,7 +29,7 @@ def compare_records(azara_record, rui_record):
     :return: bool - do the coordinates match?
     """
 
-    return convert_coordinate(azara_record[-1])==rui_record[1]
+    return convert_coordinate(azara_record[-1]) == rui_record[1]
 
 
 def create_record(a_rec, r_rec):
@@ -40,8 +40,9 @@ def create_record(a_rec, r_rec):
     :return: tuple or str - the combined record (if compatible), or the string "not a match" (if incompatible).
     """
 
-    if not compare_records(a_rec,r_rec): return "not a match"
-    return (a_rec[0],a_rec[-1],r_rec[0],r_rec[1],r_rec[-1])
+    if not compare_records(a_rec, r_rec):
+        return "not a match"
+    return (a_rec[0], a_rec[-1], r_rec[0], r_rec[1], r_rec[-1])
 
 
 def clean_up(combined_record_group):
@@ -54,7 +55,17 @@ def clean_up(combined_record_group):
 
     (see HINTS.md for an example).
     """
-    h_string =""
+    h_string = ""
     for rec in combined_record_group:
-        h_string = h_string + "("+", ".join(["'"+rec[0]+"'"]+["'"+rec[2]+"'"]+[str(rec[3])]+["'"+rec[4]+"'"])+")\n"
+        h_string = (
+            h_string
+            + "("
+            + ", ".join(
+                ["'" + rec[0] + "'"]
+                + ["'" + rec[2] + "'"]
+                + [str(rec[3])]
+                + ["'" + rec[4] + "'"]
+            )
+            + ")\n"
+        )
     return h_string

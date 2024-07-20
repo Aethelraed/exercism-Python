@@ -4,5 +4,7 @@ def flatten(iter):
             try:
                 yield from flatten(item)
             except TypeError:
-               if item != None: yield item 
+                if item != None:
+                    yield item
+
     return list(helper(iter))

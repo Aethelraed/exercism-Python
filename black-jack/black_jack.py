@@ -16,8 +16,10 @@ def value_of_card(card):
     3.  '2' - '10' = numerical value.
     """
 
-    if card in ["J","Q","K"]: return 10
-    if card in ["A"]: return 1
+    if card in ["J", "Q", "K"]:
+        return 10
+    if card in ["A"]:
+        return 1
     return int(card)
 
 
@@ -32,9 +34,11 @@ def higher_card(card_one, card_two):
     3.  '2' - '10' = numerical value.
     """
 
-    if value_of_card(card_one)> value_of_card(card_two): return card_one
-    if value_of_card(card_one)< value_of_card(card_two): return card_two
-    return (card_one,card_two)
+    if value_of_card(card_one) > value_of_card(card_two):
+        return card_one
+    if value_of_card(card_one) < value_of_card(card_two):
+        return card_two
+    return (card_one, card_two)
 
 
 def value_of_ace(card_one, card_two):
@@ -48,8 +52,10 @@ def value_of_ace(card_one, card_two):
     3.  '2' - '10' = numerical value.
     """
 
-    
-    if value_of_card(card_one)+value_of_card(card_two)<11-(10*((card_one in "A" )| (card_two in "A"))): return 11
+    if value_of_card(card_one) + value_of_card(card_two) < 11 - (
+        10 * ((card_one in "A") | (card_two in "A"))
+    ):
+        return 11
     return 1
 
 
@@ -63,7 +69,10 @@ def is_blackjack(card_one, card_two):
     2.  'A' (ace card) = 11 (if already in hand)
     3.  '2' - '10' = numerical value.
     """
-    if value_of_card(card_one)+value_of_card(card_two)==21-(10*((card_one in "A" )| (card_two in "A"))): return True    
+    if value_of_card(card_one) + value_of_card(card_two) == 21 - (
+        10 * ((card_one in "A") | (card_two in "A"))
+    ):
+        return True
     return False
 
 
@@ -84,4 +93,4 @@ def can_double_down(card_one, card_two):
     :return: bool - can the hand can be doubled down? (i.e. totals 9, 10 or 11 points).
     """
 
-    return (value_of_card(card_one)+value_of_card(card_two) ) in {9,10,11}
+    return (value_of_card(card_one) + value_of_card(card_two)) in {9, 10, 11}

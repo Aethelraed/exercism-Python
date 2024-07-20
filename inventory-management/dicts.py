@@ -8,8 +8,8 @@ def create_inventory(items):
     :return: dict - the inventory dictionary.
     """
     helper = {}
-    for item in set(items): 
-        helper[item]= items.count(item) 
+    for item in set(items):
+        helper[item] = items.count(item)
     return helper
 
 
@@ -21,9 +21,10 @@ def add_items(inventory, items):
     :return: dict - the inventory updated with the new items.
     """
     for item in set(items):
-        if not inventory.get(item): inventory[item] = 0
-    for item in set(items): 
-        inventory[item]= inventory.get(item)+ items.count(item) 
+        if not inventory.get(item):
+            inventory[item] = 0
+    for item in set(items):
+        inventory[item] = inventory.get(item) + items.count(item)
     return inventory
 
 
@@ -34,8 +35,9 @@ def decrement_items(inventory, items):
     :param items: list - list of items to decrement from the inventory.
     :return: dict - updated inventory with items decremented.
     """
-    for item in set(items): 
-        if item in inventory.keys(): inventory[item] = max(0,inventory.get(item)-items.count(item))
+    for item in set(items):
+        if item in inventory.keys():
+            inventory[item] = max(0, inventory.get(item) - items.count(item))
     return inventory
 
 
@@ -47,7 +49,8 @@ def remove_item(inventory, item):
     :return: dict - updated inventory with item removed. Current inventory if item does not match.
     """
 
-    if item in inventory.keys(): inventory.pop(item)
+    if item in inventory.keys():
+        inventory.pop(item)
     return inventory
 
 
@@ -59,5 +62,6 @@ def list_inventory(inventory):
     """
     out = []
     for item, it_counts in inventory.items():
-        if it_counts > 0:  out = out +[(item, it_counts)]
+        if it_counts > 0:
+            out = out + [(item, it_counts)]
     return out
